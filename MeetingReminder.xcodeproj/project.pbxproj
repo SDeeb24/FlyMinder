@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		F9DF09562FBFFF3C00F3F693 /* MeetingReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetingReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9DF095A2FBFFF3C00F3F694 /* FlyMinderMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyMinderMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +17,27 @@
 			path = MeetingReminder;
 			sourceTree = "<group>";
 		};
+		F9DF095B2FBFFF3C00F3F694 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		F9DF095C2FBFFF3C00F3F694 /* FlyMinderMobile */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FlyMinderMobile;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F9DF09532FBFFF3C00F3F693 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9DF095D2FBFFF3C00F3F694 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +51,8 @@
 			isa = PBXGroup;
 			children = (
 				F9DF09582FBFFF3C00F3F693 /* MeetingReminder */,
+				F9DF095B2FBFFF3C00F3F694 /* Shared */,
+				F9DF095C2FBFFF3C00F3F694 /* FlyMinderMobile */,
 				F9DF09572FBFFF3C00F3F693 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				F9DF09562FBFFF3C00F3F693 /* MeetingReminder.app */,
+				F9DF095A2FBFFF3C00F3F694 /* FlyMinderMobile.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -62,12 +83,36 @@
 			);
 			fileSystemSynchronizedGroups = (
 				F9DF09582FBFFF3C00F3F693 /* MeetingReminder */,
+				F9DF095B2FBFFF3C00F3F694 /* Shared */,
 			);
 			name = MeetingReminder;
 			packageProductDependencies = (
 			);
 			productName = MeetingReminder;
 			productReference = F9DF09562FBFFF3C00F3F693 /* MeetingReminder.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F9DF095E2FBFFF3C00F3F694 /* FlyMinderMobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9DF09652FBFFF3D00F3F694 /* Build configuration list for PBXNativeTarget "FlyMinderMobile" */;
+			buildPhases = (
+				F9DF095F2FBFFF3C00F3F694 /* Sources */,
+				F9DF095D2FBFFF3C00F3F694 /* Frameworks */,
+				F9DF09602FBFFF3C00F3F694 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F9DF095C2FBFFF3C00F3F694 /* FlyMinderMobile */,
+				F9DF095B2FBFFF3C00F3F694 /* Shared */,
+			);
+			name = FlyMinderMobile;
+			packageProductDependencies = (
+			);
+			productName = FlyMinderMobile;
+			productReference = F9DF095A2FBFFF3C00F3F694 /* FlyMinderMobile.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -81,6 +126,9 @@
 				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					F9DF09552FBFFF3C00F3F693 = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					F9DF095E2FBFFF3C00F3F694 = {
 						CreatedOnToolsVersion = 26.3;
 					};
 				};
@@ -100,6 +148,7 @@
 			projectRoot = "";
 			targets = (
 				F9DF09552FBFFF3C00F3F693 /* MeetingReminder */,
+				F9DF095E2FBFFF3C00F3F694 /* FlyMinderMobile */,
 			);
 		};
 /* End PBXProject section */
@@ -112,10 +161,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F9DF09602FBFFF3C00F3F694 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F9DF09522FBFFF3C00F3F693 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9DF095F2FBFFF3C00F3F694 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -261,16 +324,15 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSUIElement = NO;
-				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "MeetingReminder reads upcoming events so it can fly a banner across your screen 5 minutes before each meeting.";
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "MeetingReminder reads upcoming events so it can fly a banner across your screen 5 minutes before each meeting.";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_CFBundleDisplayName = FlyMinder;
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 FlyMinder. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.connie.MeetingReminder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flyminder.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -298,16 +360,15 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSUIElement = NO;
-				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "MeetingReminder reads upcoming events so it can fly a banner across your screen 5 minutes before each meeting.";
-				INFOPLIST_KEY_NSCalendarsUsageDescription = "MeetingReminder reads upcoming events so it can fly a banner across your screen 5 minutes before each meeting.";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_CFBundleDisplayName = FlyMinder;
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 FlyMinder. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.connie.MeetingReminder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flyminder.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -316,6 +377,71 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F9DF09662FBFFF3D00F3F694 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FlyMinderMobile/FlyMinderMobile.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = FlyMinder;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 FlyMinder. All rights reserved.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flyminder.app.mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F9DF09672FBFFF3D00F3F694 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FlyMinderMobile/FlyMinderMobile.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = FlyMinder;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 FlyMinder. All rights reserved.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flyminder.app.mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -336,6 +462,15 @@
 			buildConfigurations = (
 				F9DF09622FBFFF3D00F3F693 /* Debug */,
 				F9DF09632FBFFF3D00F3F693 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9DF09652FBFFF3D00F3F694 /* Build configuration list for PBXNativeTarget "FlyMinderMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9DF09662FBFFF3D00F3F694 /* Debug */,
+				F9DF09672FBFFF3D00F3F694 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,11 +1,11 @@
 import SwiftUI
 
 @main
-struct MeetingReminderApp: App {
+struct FlyMinderApp: App {
     @StateObject private var controller = AppController()
 
     var body: some Scene {
-        // Lives in the menu bar only — no Dock icon needed (set LSUIElement in Info.plist)
+        // Menu bar only — LSUIElement hides the Dock icon.
         MenuBarExtra {
             MenuBarView()
                 .environmentObject(controller)

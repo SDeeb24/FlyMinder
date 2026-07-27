@@ -3,54 +3,108 @@ import AppKit
 import Combine
 import ServiceManagement
 
-// Central coordinator: owns the Apple Calendar service + poller, and triggers the airplane.
+// Central coordinator: owns the stretch scheduler and triggers the flying banner.
 @MainActor
 final class AppController: ObservableObject {
-    @Published var hasAppleAccess: Bool = false
+    @Published var remindersEnabled: Bool {
+        didSet { UserDefaults.standard.set(remindersEnabled, forKey: "remindersEnabled") }
+    }
     @Published var flightDuration: Double {
         didSet { UserDefaults.standard.set(flightDuration, forKey: "flightDuration") }
     }
     @Published var launchAtLogin: Bool = false
+    @Published var secondsUntilNextReminder: Int = 0
+    @Published var showWelcomeHint: Bool = !UserDefaults.standard.bool(forKey: "hasSeenWelcome")
 
-    /// Preset speeds (seconds for the plane to cross the screen).
+    let settings = FlyMinderSettings.shared
+
+    static let maxBannerMessageLength = FlyMinderSettings.maxBannerMessageLength
+    static let defaultBannerMessage = FlyMinderSettings.defaultBannerMessage
+
+    /// Preset speeds (seconds for the banner to cross the screen).
     static let slowSpeed:   Double = 22
     static let normalSpeed: Double = 14
     static let fastSpeed:   Double = 8
 
-    private let appleService = AppleCalendarService()
-    private var poller: CalendarPoller?
+    /// Reminder interval presets (minutes between alerts).
+    static let interval20 = FlyMinderSettings.interval20
+    static let interval30 = FlyMinderSettings.interval30
+    static let interval45 = FlyMinderSettings.interval45
+    static let interval60 = FlyMinderSettings.interval60
+
+    private var scheduler: StretchReminderScheduler?
     private var overlayWindows: [AirplaneOverlayWindow] = []
+    private var countdownTimer: Timer?
+    private var wakeObserver: NSObjectProtocol?
+    private var cancellables = Set<AnyCancellable>()
 
     init() {
-        let saved = UserDefaults.standard.double(forKey: "flightDuration")
-        self.flightDuration = saved > 0 ? saved : Self.normalSpeed
+        let savedSpeed = UserDefaults.standard.double(forKey: "flightDuration")
+        self.flightDuration = savedSpeed > 0 ? savedSpeed : Self.normalSpeed
+
+        if UserDefaults.standard.object(forKey: "remindersEnabled") == nil {
+            self.remindersEnabled = true
+        } else {
+            self.remindersEnabled = UserDefaults.standard.bool(forKey: "remindersEnabled")
+        }
 
         launchAtLogin = SMAppService.mainApp.status == .enabled
 
-        hasAppleAccess = appleService.hasAccess
-        startPollingIfReady()
+        settings.$intervalMinutes
+            .dropFirst()
+            .sink { [weak self] minutes in
+                self?.scheduler?.updateInterval(minutes)
+            }
+            .store(in: &cancellables)
+
+        wakeObserver = NSWorkspace.shared.notificationCenter.addObserver(
+            forName: NSWorkspace.didWakeNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                self?.handleWakeFromSleep()
+            }
+        }
+
+        startSchedulerIfReady()
+    }
+
+    deinit {
+        if let wakeObserver {
+            NSWorkspace.shared.notificationCenter.removeObserver(wakeObserver)
+        }
     }
 
     // MARK: Public
 
-    func requestAppleAccess() {
-        // macOS 26: TCC prompt won't appear for menu-bar-only apps unless the app
-        // is the active application first. Activate, then request.
-        NSApplication.shared.activate(ignoringOtherApps: true)
-        Task {
-            let granted = await appleService.requestAccess()
-            await MainActor.run {
-                self.hasAppleAccess = granted
-                self.startPollingIfReady()
-                if !granted {
-                    // If the prompt still didn't appear (macOS 26 known issue),
-                    // open System Settings → Privacy → Calendars as fallback.
-                    if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Calendars") {
-                        NSWorkspace.shared.open(url)
-                    }
-                }
-            }
-        }
+    var bannerMessage: String {
+        get { settings.bannerMessage }
+        set { settings.setBannerMessage(newValue) }
+    }
+
+    var intervalMinutes: Double {
+        get { settings.intervalMinutes }
+        set { settings.setIntervalMinutes(newValue) }
+    }
+
+    func setRemindersEnabled(_ enabled: Bool) {
+        remindersEnabled = enabled
+        startSchedulerIfReady()
+    }
+
+    func setIntervalMinutes(_ minutes: Double) {
+        settings.setIntervalMinutes(minutes)
+        scheduler?.updateInterval(minutes)
+    }
+
+    func setBannerMessage(_ text: String) {
+        settings.setBannerMessage(text)
+    }
+
+    func dismissWelcome() {
+        showWelcomeHint = false
+        UserDefaults.standard.set(true, forKey: "hasSeenWelcome")
     }
 
     /// Enable or disable launching the app automatically at login.
@@ -64,52 +118,89 @@ final class AppController: ObservableObject {
         } catch {
             NSLog("Failed to update launch-at-login: \(error.localizedDescription)")
         }
-        // Re-read the real status; the request may have failed or been overridden.
         launchAtLogin = SMAppService.mainApp.status == .enabled
     }
 
-    /// Manual trigger — shows the airplane immediately with a fake meeting.
-    func testAirplane() {
-        let fake = CalendarEvent(
-            id:        UUID().uuidString,
-            title:     "Test Meeting",
-            startDate: Date().addingTimeInterval(300),
-            endDate:   Date().addingTimeInterval(1800)
-        )
-        showAirplane(for: fake, minutesUntil: 5)
+    /// Manual trigger — shows the banner immediately and resets the countdown.
+    func testReminder() {
+        showBanner(message: effectiveBannerMessage)
+        scheduler?.resetCountdown()
+        updateCountdown()
+    }
+
+    var effectiveBannerMessage: String {
+        settings.effectiveBannerMessage
+    }
+
+    static func clampBannerMessage(_ text: String) -> String {
+        FlyMinderSettings.clampBannerMessage(text)
     }
 
     // MARK: Private
 
-    private func startPollingIfReady() {
-        poller?.stop()
-        poller = nil
-        guard hasAppleAccess else { return }
+    private func startSchedulerIfReady() {
+        scheduler?.stop()
+        scheduler = nil
+        stopCountdownTimer()
+        guard remindersEnabled else { return }
 
-        let p = CalendarPoller(service: appleService)
-        p.onMeetingSoon = { [weak self] event, minutes in
-            self?.showAirplane(for: event, minutesUntil: minutes)
+        let s = StretchReminderScheduler(intervalMinutes: settings.intervalMinutes)
+        s.messageProvider = { [weak self] in
+            self?.effectiveBannerMessage ?? Self.defaultBannerMessage
         }
-        p.start()
-        poller = p
+        s.onReminder = { [weak self] message in
+            self?.showBanner(message: message)
+        }
+        s.onSchedule = { [weak self] in
+            self?.updateCountdown()
+        }
+        s.start()
+        scheduler = s
+        startCountdownTimer()
     }
 
-    private func showAirplane(for event: CalendarEvent, minutesUntil: Int) {
+    private func startCountdownTimer() {
+        countdownTimer?.invalidate()
+        updateCountdown()
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            DispatchQueue.main.async { [weak self] in
+                self?.updateCountdown()
+            }
+        }
+    }
+
+    private func stopCountdownTimer() {
+        countdownTimer?.invalidate()
+        countdownTimer = nil
+        secondsUntilNextReminder = 0
+    }
+
+    private func updateCountdown() {
+        guard remindersEnabled, let next = scheduler?.nextReminderDate else {
+            secondsUntilNextReminder = 0
+            return
+        }
+        secondsUntilNextReminder = max(0, Int(next.timeIntervalSinceNow.rounded(.down)))
+    }
+
+    private func handleWakeFromSleep() {
+        scheduler?.refreshAfterWake()
+        updateCountdown()
+    }
+
+    private func showBanner(message: String) {
         let duration = flightDuration
         DispatchQueue.main.async {
-            // Spawn one overlay per screen so the animation plays on every display
             let screens = NSScreen.screens.isEmpty ? [NSScreen.main].compactMap { $0 } : NSScreen.screens
             for screen in screens {
                 let window = AirplaneOverlayWindow(
-                    meetingTitle:   event.title,
-                    minutesUntil:   minutesUntil,
+                    message:        message,
                     flightDuration: duration,
                     screen:         screen
                 )
                 window.makeKeyAndOrderFront(nil)
                 self.overlayWindows.append(window)
 
-                // Release shortly after the animation finishes (fade-out is 0.6s)
                 DispatchQueue.main.asyncAfter(deadline: .now() + duration + 1.5) {
                     self.overlayWindows.removeAll { $0 === window }
                     window.close()

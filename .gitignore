@@ -7,6 +7,9 @@ xcuserdata/
 *.xcuserdatad/
 DerivedData/
 build/
+Stretch Reminder.app
+FlyMinder.app
+FlyMinder.dmg
 *.moved-aside
 *.pbxuser
 !default.pbxuser
