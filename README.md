@@ -10,6 +10,14 @@ Native SwiftUI · menu bar only · floats above fullscreen apps · no account re
 
 ---
 
+## Attribution
+
+FlyMinder is a fork of [meeting-reminder](https://github.com/conniexu444/meeting-reminder) by [Connie Xu](https://github.com/conniexu444).
+
+This fork pivoted from calendar-based meeting alerts to interval-based movement reminders, removed the EventKit calendar integration, and added an iOS companion app with a shared settings layer.
+
+---
+
 ## Requirements
 
 - **macOS 14 (Sonoma)** or later

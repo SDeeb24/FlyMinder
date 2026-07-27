@@ -1,6 +1,7 @@
 MIT License
 
-Copyright (c) 2026 FlyMinder
+Copyright (c) 2026 Connie Xu
+Copyright (c) 2026 Sam Deeb
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +23,5 @@ SOFTWARE.
 
 ---
 
-This project is derived from meeting-reminder (https://github.com/conniexu444/meeting-reminder),
-originally licensed under the MIT License. Original copyright notices from
-upstream contributors are retained in the project history.
+This project is a fork of meeting-reminder (https://github.com/conniexu444/meeting-reminder)
+by Connie Xu. Modifications in this repository are copyright Sam Deeb.
