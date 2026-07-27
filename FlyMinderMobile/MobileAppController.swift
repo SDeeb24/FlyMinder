@@ -12,7 +12,7 @@ final class MobileAppController: ObservableObject {
     @Published var activeMessage = FlyMinderSettings.defaultBannerMessage
 
     private let settings = FlyMinderSettings.shared
-    private var scheduler: MobileReminderScheduler?
+    private var scheduler: StretchReminderScheduler?
     private var countdownTimer: Timer?
     private var cancellables = Set<AnyCancellable>()
 
@@ -57,7 +57,7 @@ final class MobileAppController: ObservableObject {
         stopCountdownTimer()
         guard remindersEnabled else { return }
 
-        let s = MobileReminderScheduler(intervalMinutes: settings.intervalMinutes)
+        let s = StretchReminderScheduler(intervalMinutes: settings.intervalMinutes)
         s.messageProvider = { [weak self] in
             self?.settings.effectiveBannerMessage ?? FlyMinderSettings.defaultBannerMessage
         }

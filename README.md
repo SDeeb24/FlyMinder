@@ -66,12 +66,13 @@ xcodebuild test -project FlyMinder.xcodeproj -scheme FlyMinder -destination 'pla
 FlyMinder/
 ├── FlyMinderApp.swift             # @main + MenuBarExtra
 ├── AppController.swift            # Coordinator
-├── StretchReminderScheduler.swift # Interval timer
 ├── AirplaneView.swift             # Banner animation
 └── Assets.xcassets/
 FlyMinderTests/                    # Scheduler unit tests
 FlyMinderMobile/                   # iOS balloon prototype
-Shared/FlyMinderSettings.swift     # iCloud + local settings
+Shared/
+├── FlyMinderSettings.swift        # iCloud + local settings
+└── StretchReminderScheduler.swift # Interval timer (Mac + iOS)
 scripts/build.sh
 website/
 ```

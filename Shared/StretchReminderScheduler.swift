@@ -120,7 +120,7 @@ final class StretchReminderScheduler {
     }
 
     private func fireReminder() {
-        let message = messageProvider?() ?? "Get up and stretch!"
+        let message = messageProvider?() ?? FlyMinderSettings.defaultBannerMessage
         log.info("FIRING reminder: '\(message)'")
         onReminder?(message)
     }
