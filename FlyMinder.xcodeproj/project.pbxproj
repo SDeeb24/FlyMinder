@@ -6,15 +6,26 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		F9DF09702FBFFF3D00F3F694 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9DF094E2FBFFF3C00F3F693 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F9DF09552FBFFF3C00F3F693;
+			remoteInfo = FlyMinder;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		F9DF09562FBFFF3C00F3F693 /* MeetingReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetingReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9DF09562FBFFF3C00F3F693 /* FlyMinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyMinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9DF095A2FBFFF3C00F3F694 /* FlyMinderMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyMinderMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9DF09682FBFFF3D00F3F694 /* FlyMinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlyMinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		F9DF09582FBFFF3C00F3F693 /* MeetingReminder */ = {
+		F9DF09582FBFFF3C00F3F693 /* FlyMinder */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MeetingReminder;
+			path = FlyMinder;
 			sourceTree = "<group>";
 		};
 		F9DF095B2FBFFF3C00F3F694 /* Shared */ = {
@@ -25,6 +36,11 @@
 		F9DF095C2FBFFF3C00F3F694 /* FlyMinderMobile */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = FlyMinderMobile;
+			sourceTree = "<group>";
+		};
+		F9DF09692FBFFF3D00F3F694 /* FlyMinderTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FlyMinderTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -44,13 +60,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F9DF096A2FBFFF3D00F3F694 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		F9DF094D2FBFFF3C00F3F693 = {
 			isa = PBXGroup;
 			children = (
-				F9DF09582FBFFF3C00F3F693 /* MeetingReminder */,
+				F9DF09582FBFFF3C00F3F693 /* FlyMinder */,
+				F9DF09692FBFFF3D00F3F694 /* FlyMinderTests */,
 				F9DF095B2FBFFF3C00F3F694 /* Shared */,
 				F9DF095C2FBFFF3C00F3F694 /* FlyMinderMobile */,
 				F9DF09572FBFFF3C00F3F693 /* Products */,
@@ -60,7 +84,8 @@
 		F9DF09572FBFFF3C00F3F693 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F9DF09562FBFFF3C00F3F693 /* MeetingReminder.app */,
+				F9DF09562FBFFF3C00F3F693 /* FlyMinder.app */,
+				F9DF09682FBFFF3D00F3F694 /* FlyMinderTests.xctest */,
 				F9DF095A2FBFFF3C00F3F694 /* FlyMinderMobile.app */,
 			);
 			name = Products;
@@ -69,9 +94,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F9DF09552FBFFF3C00F3F693 /* MeetingReminder */ = {
+		F9DF09552FBFFF3C00F3F693 /* FlyMinder */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F9DF09612FBFFF3D00F3F693 /* Build configuration list for PBXNativeTarget "MeetingReminder" */;
+			buildConfigurationList = F9DF09612FBFFF3D00F3F693 /* Build configuration list for PBXNativeTarget "FlyMinder" */;
 			buildPhases = (
 				F9DF09522FBFFF3C00F3F693 /* Sources */,
 				F9DF09532FBFFF3C00F3F693 /* Frameworks */,
@@ -82,14 +107,14 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				F9DF09582FBFFF3C00F3F693 /* MeetingReminder */,
+				F9DF09582FBFFF3C00F3F693 /* FlyMinder */,
 				F9DF095B2FBFFF3C00F3F694 /* Shared */,
 			);
-			name = MeetingReminder;
+			name = FlyMinder;
 			packageProductDependencies = (
 			);
-			productName = MeetingReminder;
-			productReference = F9DF09562FBFFF3C00F3F693 /* MeetingReminder.app */;
+			productName = FlyMinder;
+			productReference = F9DF09562FBFFF3C00F3F693 /* FlyMinder.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F9DF095E2FBFFF3C00F3F694 /* FlyMinderMobile */ = {
@@ -115,6 +140,29 @@
 			productReference = F9DF095A2FBFFF3C00F3F694 /* FlyMinderMobile.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F9DF096B2FBFFF3D00F3F694 /* FlyMinderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9DF096C2FBFFF3D00F3F694 /* Build configuration list for PBXNativeTarget "FlyMinderTests" */;
+			buildPhases = (
+				F9DF09712FBFFF3D00F3F694 /* Sources */,
+				F9DF096A2FBFFF3D00F3F694 /* Frameworks */,
+				F9DF09722FBFFF3D00F3F694 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9DF096F2FBFFF3D00F3F694 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F9DF09692FBFFF3D00F3F694 /* FlyMinderTests */,
+			);
+			name = FlyMinderTests;
+			packageProductDependencies = (
+			);
+			productName = FlyMinderTests;
+			productReference = F9DF09682FBFFF3D00F3F694 /* FlyMinderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -131,9 +179,13 @@
 					F9DF095E2FBFFF3C00F3F694 = {
 						CreatedOnToolsVersion = 26.3;
 					};
+					F9DF096B2FBFFF3D00F3F694 = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = F9DF09552FBFFF3C00F3F693;
+					};
 				};
 			};
-			buildConfigurationList = F9DF09512FBFFF3C00F3F693 /* Build configuration list for PBXProject "MeetingReminder" */;
+			buildConfigurationList = F9DF09512FBFFF3C00F3F693 /* Build configuration list for PBXProject "FlyMinder" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -147,7 +199,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F9DF09552FBFFF3C00F3F693 /* MeetingReminder */,
+				F9DF09552FBFFF3C00F3F693 /* FlyMinder */,
+				F9DF096B2FBFFF3D00F3F694 /* FlyMinderTests */,
 				F9DF095E2FBFFF3C00F3F694 /* FlyMinderMobile */,
 			);
 		};
@@ -162,6 +215,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F9DF09602FBFFF3C00F3F694 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9DF09722FBFFF3D00F3F694 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -185,7 +245,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F9DF09712FBFFF3D00F3F694 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F9DF096F2FBFFF3D00F3F694 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F9DF09552FBFFF3C00F3F693 /* FlyMinder */;
+			targetProxy = F9DF09702FBFFF3D00F3F694 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F9DF095F2FBFFF3D00F3F693 /* Debug */ = {
@@ -242,7 +317,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -300,7 +375,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -313,7 +388,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MeetingReminder/MeetingReminder.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FlyMinder/FlyMinder.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -322,6 +397,7 @@
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = FlyMinder;
@@ -333,7 +409,8 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.flyminder.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FlyMinder;
+				PRODUCT_MODULE_NAME = FlyMinder;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -349,7 +426,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MeetingReminder/MeetingReminder.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FlyMinder/FlyMinder.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -369,7 +446,8 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.flyminder.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FlyMinder;
+				PRODUCT_MODULE_NAME = FlyMinder;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -445,10 +523,49 @@
 			};
 			name = Release;
 		};
+		F9DF096D2FBFFF3D00F3F694 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flyminder.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlyMinder.app/Contents/MacOS/FlyMinder";
+			};
+			name = Debug;
+		};
+		F9DF096E2FBFFF3D00F3F694 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flyminder.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlyMinder.app/Contents/MacOS/FlyMinder";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F9DF09512FBFFF3C00F3F693 /* Build configuration list for PBXProject "MeetingReminder" */ = {
+		F9DF09512FBFFF3C00F3F693 /* Build configuration list for PBXProject "FlyMinder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F9DF095F2FBFFF3D00F3F693 /* Debug */,
@@ -457,7 +574,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F9DF09612FBFFF3D00F3F693 /* Build configuration list for PBXNativeTarget "MeetingReminder" */ = {
+		F9DF09612FBFFF3D00F3F693 /* Build configuration list for PBXNativeTarget "FlyMinder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F9DF09622FBFFF3D00F3F693 /* Debug */,
@@ -471,6 +588,15 @@
 			buildConfigurations = (
 				F9DF09662FBFFF3D00F3F694 /* Debug */,
 				F9DF09672FBFFF3D00F3F694 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9DF096C2FBFFF3D00F3F694 /* Build configuration list for PBXNativeTarget "FlyMinderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9DF096D2FBFFF3D00F3F694 /* Debug */,
+				F9DF096E2FBFFF3D00F3F694 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

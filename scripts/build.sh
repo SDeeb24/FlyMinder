@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 # Build a release FlyMinder.app and optional .dmg for distribution.
 #
-# Requirements:
-#   - Full Xcode installed
-#   - For public distribution: Apple Developer account + notarization (see below)
-#
 # Usage:
 #   ./scripts/build.sh              # builds FlyMinder.app
 #   ./scripts/build.sh --dmg        # also creates FlyMinder.dmg
@@ -14,8 +10,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BUILD_DIR="$ROOT/build"
 APP_NAME="FlyMinder"
-PRODUCT_NAME="MeetingReminder"
-SCHEME="MeetingReminder"
+SCHEME="FlyMinder"
 DEVELOPER_DIR="${DEVELOPER_DIR:-/Applications/Xcode.app/Contents/Developer}"
 
 MAKE_DMG=false
@@ -25,7 +20,7 @@ fi
 
 echo "→ Building ${APP_NAME} (Release)…"
 DEVELOPER_DIR="$DEVELOPER_DIR" xcodebuild \
-  -project "$ROOT/MeetingReminder.xcodeproj" \
+  -project "$ROOT/FlyMinder.xcodeproj" \
   -scheme "$SCHEME" \
   -configuration Release \
   -derivedDataPath "$BUILD_DIR" \
@@ -33,7 +28,7 @@ DEVELOPER_DIR="$DEVELOPER_DIR" xcodebuild \
   DEVELOPMENT_TEAM="${DEVELOPMENT_TEAM:-}" \
   build
 
-BUILT_APP="$BUILD_DIR/Build/Products/Release/${PRODUCT_NAME}.app"
+BUILT_APP="$BUILD_DIR/Build/Products/Release/${APP_NAME}.app"
 OUT_APP="$ROOT/${APP_NAME}.app"
 
 rm -rf "$OUT_APP"
@@ -70,6 +65,6 @@ Next steps for public distribution
      xcrun notarytool submit FlyMinder.dmg --keychain-profile "AC_PASSWORD" --wait
      xcrun stapler staple FlyMinder.dmg
 4. Host FlyMinder.dmg on your website (see website/index.html).
-5. Update support email and URLs in MeetingReminder/AppInfo.swift.
+5. Update support email and URLs in FlyMinder/AppInfo.swift.
 
 EOF

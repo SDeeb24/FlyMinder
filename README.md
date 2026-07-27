@@ -1,25 +1,27 @@
 # ✈️ FlyMinder
 
-A macOS menu bar app that flies a hand-drawn pink airplane across your screen on a
-regular schedule, trailing a pink banner with **your custom message** — reminding
-you to walk, stretch, and take breaks.
+![FlyMinder banner flying across the screen](media/demo.png)
+
+A macOS menu bar app that flies your custom message across the screen on a schedule — reminding you to **walk**, **stretch**, and take breaks.
 
 Native SwiftUI · menu bar only · floats above fullscreen apps · no account required.
+
+> **Tip:** Replace `media/demo.png` with a short screen recording (`demo.gif`) for the best first impression.
 
 ---
 
 ## Requirements
 
-- **macOS 26 (Tahoe)** or later
-- **Xcode 26** or later (to build from source)
+- **macOS 14 (Sonoma)** or later
+- **Xcode 15** or later (to build from source)
 
 ---
 
-## Quick start (developers)
+## Quick start
 
 ```bash
-open MeetingReminder.xcodeproj
-# Press ⌘R in Xcode
+open FlyMinder.xcodeproj
+# Select the FlyMinder scheme → Press ⌘R
 ```
 
 ## Build for distribution
@@ -30,57 +32,44 @@ chmod +x scripts/build.sh
 ./scripts/build.sh --dmg    # → FlyMinder.app + FlyMinder.dmg
 ```
 
-See the end of `scripts/build.sh` for notarization steps (requires Apple Developer account).
+Run tests:
+
+```bash
+xcodebuild test -project FlyMinder.xcodeproj -scheme FlyMinder -destination 'platform=macOS'
+```
 
 ---
 
-## Public release checklist
+## Features
 
-| Done | Item |
-|------|------|
-| ✅ | Menu bar only (no Dock icon) |
-| ✅ | System font fallback if Comic Sans unavailable |
-| ✅ | About window + version + support links |
-| ✅ | First-run welcome hint |
-| ✅ | Sleep/wake countdown recovery |
-| ✅ | Bundle ID `com.flyminder.app` |
-| ✅ | Landing page (`website/index.html`) |
-| ✅ | Privacy policy (`website/privacy.html`) |
-| ⬜ | Apple Developer signing + notarization |
-| ⬜ | Host `.dmg` and update download link on website |
-| ⬜ | Update URLs/email in `MeetingReminder/AppInfo.swift` |
-
----
-
-## Configuration
-
-Edit `MeetingReminder/AppInfo.swift` before shipping:
-
-- `supportEmail`
-- `websiteURL`
-- `privacyPolicyURL`
+- Custom banner message (up to 45 characters)
+- Reminders every 20, 30, 45, or 60 minutes with live countdown
+- Menu bar only — no Dock icon
+- Floats above fullscreen apps
+- Launch at login
+- iCloud sync for message + interval (see `docs/icloud-setup.md`)
+- iOS balloon prototype (`FlyMinderMobile` scheme)
 
 ---
 
 ## Project structure
 
 ```
-MeetingReminder/
-├── MeetingReminderApp.swift       # @main + MenuBarExtra
+FlyMinder/
+├── FlyMinderApp.swift             # @main + MenuBarExtra
 ├── AppController.swift            # Coordinator
-├── AppInfo.swift                  # Version, URLs, support
-├── MenuBarView.swift              # Settings UI
-├── AboutView.swift                # About window
 ├── StretchReminderScheduler.swift # Interval timer
 ├── AirplaneView.swift             # Banner animation
-├── BannerFont.swift               # Font with system fallback
 └── Assets.xcassets/
-scripts/build.sh                   # Release + .dmg builder
-website/                           # Landing page + privacy policy
+FlyMinderTests/                    # Scheduler unit tests
+FlyMinderMobile/                   # iOS balloon prototype
+Shared/FlyMinderSettings.swift     # iCloud + local settings
+scripts/build.sh
+website/
 ```
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). Includes components derived from [meeting-reminder](https://github.com/conniexu444/meeting-reminder).

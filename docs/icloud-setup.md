@@ -4,7 +4,7 @@ FlyMinder syncs **banner message** and **reminder interval** via iCloud Key-Valu
 
 ## Enable in Xcode (requires Apple Developer account)
 
-1. Select the **MeetingReminder** or **FlyMinderMobile** target
+1. Select the **FlyMinder** or **FlyMinderMobile** target
 2. **Signing & Capabilities → + Capability → iCloud**
 3. Check **Key-value storage**
 4. Use the same team / Apple ID on Mac and iPhone
