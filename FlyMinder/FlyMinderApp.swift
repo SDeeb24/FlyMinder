@@ -10,7 +10,9 @@ struct FlyMinderApp: App {
             MenuBarView()
                 .environmentObject(controller)
         } label: {
-            Image("menubar")
+            // SF Symbol stays visible in light and dark menu bars;
+            // the custom "menubar" asset was a solid black square (invisible when dark).
+            Label("FlyMinder", systemImage: "airplane")
         }
         .menuBarExtraStyle(.window)
     }
