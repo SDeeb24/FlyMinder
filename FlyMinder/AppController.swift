@@ -121,6 +121,13 @@ final class AppController: ObservableObject {
         launchAtLogin = SMAppService.mainApp.status == .enabled
     }
 
+    /// User walked now — restart the countdown from a full interval.
+    func walkNow() {
+        guard remindersEnabled else { return }
+        scheduler?.resetCountdown()
+        updateCountdown()
+    }
+
     /// Manual trigger — shows the banner immediately and resets the countdown.
     func testReminder() {
         showBanner(message: effectiveBannerMessage)

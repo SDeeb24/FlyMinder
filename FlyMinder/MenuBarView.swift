@@ -61,6 +61,18 @@ struct MenuBarView: View {
                             .monospacedDigit()
                             .foregroundStyle(.primary)
                             .accessibilityLabel("Next reminder in \(controller.countdownText)")
+
+                        Button {
+                            controller.walkNow()
+                        } label: {
+                            Label("Walk Now", systemImage: "figure.walk")
+                                .font(.system(size: 13, weight: .semibold))
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 8)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .accessibilityLabel("Walk Now — reset the reminder countdown")
+                        .help("Restart the countdown from a full interval")
                     }
 
                     VStack(alignment: .leading, spacing: 4) {
@@ -113,7 +125,7 @@ struct MenuBarView: View {
                 Button {
                     controller.testReminder()
                 } label: {
-                    Label("Test reminder", systemImage: "figure.walk")
+                    Label("Test reminder", systemImage: "airplane")
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Test reminder")
@@ -136,7 +148,7 @@ struct MenuBarView: View {
             }
             .padding(14)
         }
-        .frame(width: 280, height: 460)
+        .frame(width: 280, height: 500)
         .sheet(isPresented: $showAbout) {
             AboutView()
         }
