@@ -6,7 +6,8 @@ final class AirplaneOverlayWindow: NSPanel {
 
     init(message: String, flightDuration: Double, screen: NSScreen? = nil) {
         let sf = (screen ?? NSScreen.main ?? NSScreen.screens.first)?.frame ?? .zero
-        let height: CGFloat = 110
+        // Tall enough for the 220pt plane without clipping mid-flight.
+        let height: CGFloat = 240
         let yPos = sf.minY + sf.height * 0.65
 
         super.init(

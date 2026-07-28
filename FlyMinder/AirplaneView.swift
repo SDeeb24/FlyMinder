@@ -26,10 +26,12 @@ struct AirplaneView: View {
                 .background(
                     Image("banner")
                         .resizable()
+                        .interpolation(.high)
                 )
 
             Image("airplane")
                 .resizable()
+                .interpolation(.high)
                 .scaledToFit()
                 .frame(width: 220, height: 220)
                 .zIndex(-1)
@@ -41,6 +43,9 @@ struct AirplaneView: View {
             }
         )
         .onPreferenceChange(ContentWidthKey.self) { contentWidth = $0 }
+        // Rasterize once so SwiftUI animates a single texture instead of
+        // re-compositing large bitmaps every frame (was the main source of hitching).
+        .drawingGroup(opaque: false)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .offset(x: xOffset)
         .opacity(opacity)
